@@ -1,0 +1,11 @@
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\bin\Debug\netcoreapp2.1\Queues.Console.deps.json
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\bin\Debug\netcoreapp2.1\Queues.Console.runtimeconfig.json
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\bin\Debug\netcoreapp2.1\Queues.Console.runtimeconfig.dev.json
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\bin\Debug\netcoreapp2.1\Queues.Console.dll
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\bin\Debug\netcoreapp2.1\Queues.Console.pdb
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.csprojAssemblyReference.cache
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.csproj.CoreCompileInputs.cache
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.AssemblyInfoInputs.cache
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.AssemblyInfo.cs
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.dll
+C:\Work\Misc\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.pdb
