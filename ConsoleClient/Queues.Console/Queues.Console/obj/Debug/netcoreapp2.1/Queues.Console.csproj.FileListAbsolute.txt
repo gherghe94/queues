@@ -19,3 +19,4 @@ C:\Work\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreap
 C:\Work\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.AssemblyInfo.cs
 C:\Work\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.dll
 C:\Work\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.pdb
+C:\Work\Q\queues\ConsoleClient\Queues.Console\Queues.Console\obj\Debug\netcoreapp2.1\Queues.Console.csprojAssemblyReference.cache
