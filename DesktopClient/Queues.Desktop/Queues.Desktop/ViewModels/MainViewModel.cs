@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using Queues.Desktop.Services;
 using System.Collections.ObjectModel;
 
 namespace Queues.Desktop.ViewModels
@@ -7,6 +8,7 @@ namespace Queues.Desktop.ViewModels
     {
         private UserViewModel _selectedUser;
         private ObservableCollection<UserViewModel> _users;
+        private NatsService _natsService;
 
         public UserViewModel SelectedUser
         {
@@ -36,9 +38,27 @@ namespace Queues.Desktop.ViewModels
 
         public MainViewModel()
         {
-            Users = new ObservableCollection<UserViewModel>
+            Users = new ObservableCollection<UserViewModel>();
+
+            _natsService = new NatsService();
+            _natsService.StartListening();
+            _natsService.UserCreated += OnUserCreated;
+        }
+
+        private void OnUserCreated(object sender, UserCreatedMessageEventArgs e)
+        {
+            App.Current.Dispatcher.Invoke(delegate
             {
-                new UserViewModel { Name = " Test ", Email = "test@gmail.com"}
+                Users.Add(CreateUser(e.User));
+            });
+        }
+
+        private UserViewModel CreateUser(UserCreatedMessage user)
+        {
+            return new UserViewModel
+            {
+                Email = user.Email,
+                Name = user.Name
             };
         }
     }

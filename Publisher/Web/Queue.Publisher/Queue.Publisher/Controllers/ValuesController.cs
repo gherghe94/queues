@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NATS.Client;
+using Newtonsoft.Json;
+using Queue.Publisher.Messages;
+using Queue.Publisher.ViewModels;
 
 namespace Queue.Publisher.Controllers
 {
@@ -26,14 +30,31 @@ namespace Queue.Publisher.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] string value)
+        public IActionResult Post([FromBody] UserViewModel userViewModel)
         {
-            using(var stanConnection = new ConnectionFactory().CreateConnection("nats://127.0.0.1:4223"))
+            if (ModelState.IsValid == false)
             {
-                stanConnection.Publish("receive-employees", Encoding.UTF8.GetBytes(value));
-
-                return Ok("everything went so damn well");
+                return BadRequest();
             }
+
+            using (var stanConnection = new ConnectionFactory().CreateConnection("nats://127.0.0.1:4223"))
+            {
+                var userMessage = CreateUserMessageFromUserViewModel(userViewModel);
+                var json = JsonConvert.SerializeObject(userViewModel);
+
+                stanConnection.Publish("receive-employees", Encoding.UTF8.GetBytes(json));
+
+                return Ok($"Message has been published: {json}");
+            }
+        }
+
+        private UserMessage CreateUserMessageFromUserViewModel(UserViewModel userViewModel)
+        {
+            return new UserMessage
+            {
+                Email = userViewModel.Email,
+                Name = userViewModel.Name
+            };
         }
 
         // PUT api/values/5
