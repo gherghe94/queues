@@ -7,6 +7,52 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0">
+            <TextBlock 
+                Text="Users:"
+                FontSize="16"
+                DockPanel.Dock="Top" 
+                Margin="10"/>
+            <ListView 
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedUser}"
+                ItemsSource="{Binding Users}"
+                Margin="10"/>
+        </DockPanel>
+
+        <DockPanel Grid.Column="1" LastChildFill="False">
+            <TextBlock 
+                Text="Details of selected user:"
+                FontSize="16"
+                DockPanel.Dock="Top" 
+                Margin="10"/>
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                FontWeight="Bold"
+                DockPanel.Dock="Top"
+                Text="Name:"/>
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                DockPanel.Dock="Top"
+                Text="{Binding SelectedUser.Name}"/>
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                FontWeight="Bold"
+                DockPanel.Dock="Top"
+                Text="Email:"/>
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                DockPanel.Dock="Top"
+                Text="{Binding SelectedUser.Email}"/>
+        </DockPanel>
     </Grid>
 </Window>
