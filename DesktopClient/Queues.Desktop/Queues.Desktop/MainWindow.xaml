@@ -25,7 +25,7 @@
                 Margin="10"/>
         </DockPanel>
 
-        <DockPanel Grid.Column="1" LastChildFill="False">
+        <DockPanel Grid.Column="1" LastChildFill="True">
             <TextBlock 
                 Text="Details of selected user:"
                 FontSize="16"
@@ -53,6 +53,14 @@
                 FontSize="14"
                 DockPanel.Dock="Top"
                 Text="{Binding SelectedUser.Email}"/>
+            <TextBlock
+                Margin="10"
+                FontSize="14"
+                FontWeight="Bold"
+                DockPanel.Dock="Top"
+                Text="Orders:"/>
+            <ListBox Margin="10"
+                     ItemsSource="{Binding SelectedUser.Orders}"/>
         </DockPanel>
     </Grid>
 </Window>

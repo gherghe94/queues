@@ -7,20 +7,21 @@ using System.Text;
 
 namespace Queues.Desktop.Services
 {
-    public class UserReceiverService : NatsService
+    public class OrderReceiverService : NatsService
     {
-        public event EventHandler<UserCreatedMessageEventArgs> UserCreated;
+        public event EventHandler<OrderCreatedMessageEventArgs> OrderCreated;
 
         protected override string GetSubject()
         {
-            return "receive-user";
+            return "receive-order";
         }
 
         protected override void OnMessageReceived(object sender, MsgHandlerEventArgs e)
         {
             var rawMessage = e.Message;
-            var newUser = JsonConvert.DeserializeObject<UserCreatedMessage>(Encoding.UTF8.GetString(rawMessage.Data));
-            UserCreated(this, new UserCreatedMessageEventArgs(newUser));
+            var newOrder = JsonConvert.DeserializeObject<OrderCreatedMessage>(Encoding.UTF8.GetString(rawMessage.Data));
+
+            OrderCreated(this, new OrderCreatedMessageEventArgs(newOrder));
         }
     }
 }

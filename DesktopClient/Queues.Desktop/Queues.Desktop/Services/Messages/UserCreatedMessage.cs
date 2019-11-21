@@ -1,4 +1,4 @@
-﻿namespace Queues.Desktop.Services
+﻿namespace Queues.Desktop.Services.Messages
 {
     public class UserCreatedMessage
     {

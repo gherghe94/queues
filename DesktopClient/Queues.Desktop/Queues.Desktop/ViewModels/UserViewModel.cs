@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System.Collections.ObjectModel;
 
 namespace Queues.Desktop.ViewModels
 {
@@ -6,6 +7,13 @@ namespace Queues.Desktop.ViewModels
     {
         private string _name;
         private string _email;
+
+        private ObservableCollection<OrderViewModel> _orders;
+
+        public UserViewModel()
+        {
+            Orders = new ObservableCollection<OrderViewModel>();
+        }
 
         public string Name
         {
@@ -20,7 +28,6 @@ namespace Queues.Desktop.ViewModels
             }
         }
 
-
         public string Email
         {
             get
@@ -31,6 +38,18 @@ namespace Queues.Desktop.ViewModels
             set
             {
                 SetProperty(ref _email, value);
+            }
+        }
+
+        public ObservableCollection<OrderViewModel> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                SetProperty(ref _orders, value);
             }
         }
 

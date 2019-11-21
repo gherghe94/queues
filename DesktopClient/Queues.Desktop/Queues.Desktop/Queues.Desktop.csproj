@@ -78,11 +78,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\Messages\OrderCreatedMessage.cs" />
+    <Compile Include="Services\Messages\ProductMessage.cs" />
     <Compile Include="Services\NatsService.cs" />
-    <Compile Include="Services\UserCreatedMessage.cs" />
-    <Compile Include="Services\UserCreatedMessageEventArgs.cs" />
+    <Compile Include="Services\Messages\UserCreatedMessage.cs" />
+    <Compile Include="Services\CustomEventArgs\OrderCreatedMessageEventArgs.cs" />
+    <Compile Include="Services\OrderReceiverService.cs" />
+    <Compile Include="Services\CustomEventArgs\UserCreatedMessageEventArgs.cs" />
     <Compile Include="Services\UserReceiverService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

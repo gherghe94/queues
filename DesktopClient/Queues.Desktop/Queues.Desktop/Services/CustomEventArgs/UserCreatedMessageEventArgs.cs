@@ -1,4 +1,6 @@
-﻿namespace Queues.Desktop.Services
+﻿using Queues.Desktop.Services.Messages;
+
+namespace Queues.Desktop.Services.CustomEventArgs
 {
     public class UserCreatedMessageEventArgs
     {
