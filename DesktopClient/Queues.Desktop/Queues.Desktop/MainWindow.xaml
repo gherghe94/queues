@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Queues.Desktop.ViewModels"
         xmlns:local="clr-namespace:Queues.Desktop"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -59,8 +60,33 @@
                 FontWeight="Bold"
                 DockPanel.Dock="Top"
                 Text="Orders:"/>
-            <ListBox Margin="10"
-                     ItemsSource="{Binding SelectedUser.Orders}"/>
+            <ListView 
+                Margin="10" 
+                ItemsSource="{Binding SelectedUser.Orders}">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:OrderViewModel}">
+                        <DockPanel LastChildFill="True">
+                            <TextBlock Text="{Binding}"/>
+                            <ListView ItemsSource="{Binding Products}" DockPanel.Dock="Bottom">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type vm:ProductViewModel}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Margin="10" Grid.Column="0" Text="{Binding Name}"/>
+                                            <TextBlock Margin="10" Grid.Column="1" Text="{Binding Category}"/>
+                                            <TextBlock Margin="10" Grid.Column="2" Text="{Binding Price}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </DockPanel>
     </Grid>
 </Window>
