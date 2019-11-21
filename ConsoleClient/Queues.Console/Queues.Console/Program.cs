@@ -16,7 +16,7 @@
                 // vargs.Message.ArrivalSubcription.Unsubscribe(); // just if we want to!
             };
 
-            var asyncSubscription = connection.SubscribeAsync("receive-employees");
+            var asyncSubscription = connection.SubscribeAsync("receive-user");
             asyncSubscription.MessageHandler += handler;
             asyncSubscription.Start();
             Console.WriteLine("Async subscription has been made");

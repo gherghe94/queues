@@ -1,14 +1,18 @@
 ﻿using Prism.Mvvm;
 using Queues.Desktop.Services;
+using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace Queues.Desktop.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public class MainViewModel : BindableBase, IDisposable
     {
+        private bool _disposed;
+
         private UserViewModel _selectedUser;
         private ObservableCollection<UserViewModel> _users;
-        private NatsService _natsService;
+        private UserReceiverService _userReceiverService;
 
         public UserViewModel SelectedUser
         {
@@ -38,16 +42,21 @@ namespace Queues.Desktop.ViewModels
 
         public MainViewModel()
         {
+            _userReceiverService = new UserReceiverService();
             Users = new ObservableCollection<UserViewModel>();
 
-            _natsService = new NatsService();
-            _natsService.StartListening();
-            _natsService.UserCreated += OnUserCreated;
+            ListenForUsers();
+        }
+
+        private void ListenForUsers()
+        {
+            _userReceiverService.StartListening();
+            _userReceiverService.UserCreated += OnUserCreated;
         }
 
         private void OnUserCreated(object sender, UserCreatedMessageEventArgs e)
         {
-            App.Current.Dispatcher.Invoke(delegate
+            Application.Current.Dispatcher.Invoke(delegate
             {
                 Users.Add(CreateUser(e.User));
             });
@@ -60,6 +69,27 @@ namespace Queues.Desktop.ViewModels
                 Email = user.Email,
                 Name = user.Name
             };
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _userReceiverService.Dispose();
+            }
+
+            _disposed = true;
         }
     }
 }

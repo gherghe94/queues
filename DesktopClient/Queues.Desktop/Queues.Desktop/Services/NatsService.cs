@@ -5,13 +5,15 @@ using Newtonsoft.Json;
 
 namespace Queues.Desktop.Services
 {
-    public class NatsService : IDisposable
+    public abstract class NatsService : IDisposable
     {
         private readonly IConnection _natsConnection;
 
         private bool _disposed;
 
-        public event EventHandler<UserCreatedMessageEventArgs> UserCreated;
+        protected abstract string GetSubject();
+
+        protected abstract void OnMessageReceived(object sender, MsgHandlerEventArgs e);
 
         public NatsService()
         {
@@ -20,7 +22,9 @@ namespace Queues.Desktop.Services
 
         public void StartListening()
         {
-            var asyncSubscription = _natsConnection.SubscribeAsync("receive-employees");
+            var subject = GetSubject();
+            var asyncSubscription = _natsConnection.SubscribeAsync(subject);
+
             asyncSubscription.MessageHandler += OnMessageReceived;
             asyncSubscription.Start();
         }
@@ -28,13 +32,6 @@ namespace Queues.Desktop.Services
         public void StopListening()
         {
             _natsConnection.Close();
-        }
-
-        private void OnMessageReceived(object sender, MsgHandlerEventArgs e)
-        {
-            var rawMessage = e.Message;
-            var newUser = JsonConvert.DeserializeObject<UserCreatedMessage>(Encoding.UTF8.GetString(rawMessage.Data));
-            UserCreated(this, new UserCreatedMessageEventArgs(newUser));
         }
 
         public void Dispose()
